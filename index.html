@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Media player</title>
+    <link rel="stylesheet" href="assets/index.css" >
 </head>
 <body>
 <header>
@@ -11,11 +12,11 @@
 </header>
 <main class="container">
     <video class="movie">
-        <source src="./assets/BigBuckBunny.mp4" />
+        <source src="./assets/BigBuckBunny.mp4"/>
     </video>
     <button id="playButton">Play</button>
 </main>
-<script>
+<script defer>
   const video = document.querySelector('video')
   const button = document.querySelector('button')
 
@@ -24,12 +25,28 @@
   }
 
   MediaPlayer.prototype.play = function () {
-    this.media.play()
+    if (this.media.paused) {
+      this.media.play()
+    } else {
+      this.media.pause()
+    }
+  }
+
+  MediaPlayer.prototype.pause = function () {
+    this.media.pause()
+  }
+
+  MediaPlayer.prototype.togglePlay = function () {
+    if (this.media.paused) {
+      this.play()
+    } else {
+      this.pause()
+    }
   }
 
   const player = new MediaPlayer({el: video})
 
-  button.onclick = () => player.play()
+  button.onclick = () => player.togglePlay()
 </script>
 </body>
 </html>
