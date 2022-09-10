@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Media player</title>
+</head>
+<body>
+<header>
+    <h1>Media Player</h1>
+    <p>An extensible media player</p>
+</header>
+<main class="container">
+    <video class="movie">
+        <source src="./assets/BigBuckBunny.mp4" />
+    </video>
+    <button id="playButton">Play</button>
+</main>
+<script>
+  const video = document.querySelector('video')
+  const button = document.querySelector('button')
+
+  function MediaPlayer(config) {
+    this.media = config.el
+  }
+
+  MediaPlayer.prototype.play = function () {
+    this.media.play()
+  }
+
+  const player = new MediaPlayer({el: video})
+
+  button.onclick = () => player.play()
+</script>
+</body>
+</html>
